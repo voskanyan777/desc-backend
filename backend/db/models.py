@@ -18,6 +18,7 @@ class ReviewsOrm(Base):
     written_at: Mapped[Annotated[datetime, mapped_column(server_default=text("TIMEZONE('utc', now())"))]]
     
 
+
 class ChatOrm(Base):
     __tablename__ = "chat"
     user_name: Mapped[str] = mapped_column(String(70), nullable=False)
