@@ -1,12 +1,11 @@
-from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker
+from sqlalchemy.ext.asyncio import async_sessionmaker
 from sqlalchemy.orm import sessionmaker, DeclarativeBase
+from sqlalchemy import create_engine
 from config import settings
 
-async_engine = create_async_engine(
-    url=settings.DATABASE_URL_asyncpg,
+sync_engine = create_engine(
+    url=settings.DATABASE_URL_psycopg,
     echo=True,  # Логирование
 )
 
-async_session_factory = async_sessionmaker(async_engine)
-
-
+session_factory = sessionmaker(sync_engine)
