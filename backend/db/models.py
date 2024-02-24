@@ -34,3 +34,15 @@ class ChatOrm(Base):
     user_phone_number: Mapped[user_phone_number]
     message: Mapped[str] = mapped_column(String(300), nullable=False)
     written_at: Mapped[written_at]
+
+
+class UserOrm(Base):
+    """
+    Таблица для хранения данных админа
+    """
+    __tablename__ = "users"
+    id: Mapped[intpk]
+    login: Mapped[str] = mapped_column(String(), nullable=False)
+    hashed_password: Mapped[str] = mapped_column(String(), nullable=False)
+    email: Mapped[str] = mapped_column(String(), nullable=False)
+    
