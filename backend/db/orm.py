@@ -14,7 +14,7 @@ def insert_data():
         user_name='Voskan',
         user_phone_number='79999999999',
         user_reviews='good',
-        user_star_rating=4
+        user_star_rating=3
     )
     chat = ChatOrm(
         user_name='Voskan',

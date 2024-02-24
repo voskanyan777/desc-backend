@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import Annotated
 
-from sqlalchemy import String, text
+from sqlalchemy import String, text, CheckConstraint
 from sqlalchemy.orm import Mapped, mapped_column, DeclarativeBase
 
 written_at = Annotated[datetime, mapped_column(server_default=text("TIMEZONE('utc', now())"))]
@@ -16,6 +16,9 @@ class Base(DeclarativeBase):
 
 class ReviewsOrm(Base):
     __tablename__ = "reviews"
+    __table_args__ = (
+        CheckConstraint('user_star_rating >= 0 AND user_star_rating <= 5'),
+    )
     id: Mapped[intpk]
     user_name: Mapped[user_name]
     user_phone_number: Mapped[user_phone_number]
