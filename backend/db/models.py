@@ -6,7 +6,7 @@ from sqlalchemy.orm import Mapped, mapped_column, DeclarativeBase
 
 written_at = Annotated[datetime, mapped_column(server_default=text("TIMEZONE('utc', now())"))]
 user_name = Annotated[str, mapped_column(String(70), nullable=False)]
-user_phone_number = Annotated[str, mapped_column(String(15), nullable=False)]
+user_email = Annotated[str, mapped_column(String(90), nullable=False)]
 intpk = Annotated[int, mapped_column(primary_key=True)]
 
 
@@ -21,7 +21,7 @@ class ReviewsOrm(Base):
     )
     id: Mapped[intpk]
     user_name: Mapped[user_name]
-    user_phone_number: Mapped[user_phone_number]
+    user_email: Mapped[user_email]
     user_reviews: Mapped[str]
     user_star_rating: Mapped[int]
     written_at: Mapped[written_at]
@@ -31,7 +31,7 @@ class ChatOrm(Base):
     __tablename__ = "chat"
     id: Mapped[intpk]
     user_name: Mapped[user_name]
-    user_phone_number: Mapped[user_phone_number]
+    user_email: Mapped[user_email]
     message: Mapped[str] = mapped_column(String(300), nullable=False)
     written_at: Mapped[written_at]
 
