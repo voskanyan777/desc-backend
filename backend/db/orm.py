@@ -12,13 +12,13 @@ def create_tables():
 def insert_data():
     reviews = ReviewsOrm(
         user_name='Voskan',
-        user_phone_number='79999999999',
+        user_email='79999999999',
         user_reviews='good',
         user_star_rating=3
     )
     chat = ChatOrm(
         user_name='Voskan',
-        user_phone_number='79999999999',
+        user_email='79999999999',
         message='Как купить у вас услугу'
     )
     with session_factory() as session:
