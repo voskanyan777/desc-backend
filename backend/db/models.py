@@ -30,6 +30,7 @@ class ReviewsOrm(Base):
 class ChatOrm(Base):
     __tablename__ = "chat"
     id: Mapped[intpk]
+    cookie: Mapped[str] = mapped_column(String(100), nullable=False)
     user_name: Mapped[user_name]
     user_email: Mapped[user_email]
     message: Mapped[str] = mapped_column(String(300), nullable=False)
