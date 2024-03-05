@@ -1,7 +1,7 @@
 from sqlalchemy import insert
 from backend.db.models import Base
 from backend.db.database import sync_engine, session_factory
-from models import ReviewsOrm, ChatOrm
+from backend.db.models import ReviewsOrm, ChatOrm
 
 
 class SyncOrm(object):
@@ -13,12 +13,19 @@ class SyncOrm(object):
         return cls._instance
 
     @staticmethod
+    def drop_tables() -> None:
+        """
+        Метод удаляет все таблицы в базе данных
+        :return: None
+        """
+        Base.metadata.drop_all(sync_engine)
+
+    @staticmethod
     def create_tables() -> None:
         """
         Метод создает все таблицы в базе данных
         :return:
         """
-        Base.metadata.drop_all(sync_engine)
         Base.metadata.create_all(sync_engine)
 
     @staticmethod

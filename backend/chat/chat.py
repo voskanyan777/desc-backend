@@ -43,13 +43,16 @@ async def websocket_endpoint(websocket: WebSocket, client_cookie: str):
     try:
         while True:
             # Ожидание ввода (сообщения)
-            data = await websocket.receive_text()
+            data = await websocket.receive_json()
+            user_name = data['user_name']
+            user_email = data['user_email']
+            message = data['message']
             syncOrm.insert_message_to_db(
                 cookie=client_cookie,
-                user_name='Some name',
-                user_email='some@mail.ru',
-                message=data
+                user_name=user_name,
+                user_email=user_email,
+                message=message
             )
-            await manager.send_personal_message(data, websocket)
+            await manager.send_personal_message(message, websocket)
     except WebSocketDisconnect:
         manager.disconnect(websocket)
