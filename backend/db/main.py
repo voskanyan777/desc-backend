@@ -1,5 +1,6 @@
-from orm import create_tables, insert_data
+from orm import SyncOrm
 
 if __name__ == '__main__':
-    create_tables()
+    syncOrm = SyncOrm()
+    syncOrm.create_tables()
     # insert_data()
