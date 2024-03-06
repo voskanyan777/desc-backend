@@ -1,3 +1,7 @@
+"""
+Модуль с реализацией чата техподдержки
+"""
+
 from fastapi import WebSocket, WebSocketDisconnect
 from backend.db.orm import SyncOrm
 from backend.chat.routers import chat_router
@@ -28,7 +32,7 @@ manager = ConnectionManager()
 
 
 @chat_router.websocket('/ws/{client_cookie}')
-async def websocket_endpoint(websocket: WebSocket, client_cookie: str):
+async def websocket_endpoint(websocket: WebSocket, client_cookie: str) -> None:
     await manager.connect(websocket)
     try:
         while True:

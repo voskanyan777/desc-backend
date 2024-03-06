@@ -1,3 +1,6 @@
+"""
+Модуль для работы с запросами в базу данных
+"""
 from sqlalchemy import insert, select
 from backend.db.models import Base
 from backend.db.database import sync_engine, session_factory
@@ -5,6 +8,8 @@ from backend.db.models import ReviewsOrm, ChatOrm
 
 
 class SyncOrm(object):
+    ''' Класс содержит методы для работы с бд'''
+
     # Реализация паттерна Singleton
     _instance = None
 
@@ -51,7 +56,10 @@ class SyncOrm(object):
             session.commit()
 
     @staticmethod
-    def select_last_messages(client_cookie: str) -> tuple:
+    def select_last_messages(client_cookie: str) -> list:
+        """
+        Метод делает выборку последних сообщении пользоваеля по его куки
+        """
         with session_factory() as session:
             query = select(ChatOrm.message).where(ChatOrm.cookie == client_cookie)
             result = session.execute(query)

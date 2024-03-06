@@ -1,3 +1,8 @@
+"""
+Главный файл всей системы, именно здесь
+происходит запуск backend части
+"""
+
 import uvicorn
 from fastapi import FastAPI
 from backend.chat.chat import chat_router

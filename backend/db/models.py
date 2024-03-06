@@ -1,3 +1,6 @@
+"""
+Модуль содержит реализацию моделей таблиц в базе данных
+"""
 from datetime import datetime
 from typing import Annotated
 
@@ -10,11 +13,15 @@ user_email = Annotated[str, mapped_column(String(90), nullable=False)]
 intpk = Annotated[int, mapped_column(primary_key=True)]
 
 
+# Базовый класс
 class Base(DeclarativeBase):
     pass
 
 
 class ReviewsOrm(Base):
+    """
+    Модель таблицы, которая содержить отзывы пользователей
+    """
     __tablename__ = "reviews"
     __table_args__ = (
         CheckConstraint('user_star_rating >= 0 AND user_star_rating <= 5'),
@@ -28,6 +35,9 @@ class ReviewsOrm(Base):
 
 
 class ChatOrm(Base):
+    """
+    Модель таблицы, которая содержить все сообщения пользователей
+    """
     __tablename__ = "chat"
     id: Mapped[intpk]
     cookie: Mapped[str] = mapped_column(String(100), nullable=False)
