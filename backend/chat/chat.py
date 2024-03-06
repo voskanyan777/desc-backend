@@ -1,11 +1,8 @@
-from fastapi import WebSocket, WebSocketDisconnect, APIRouter
+from fastapi import WebSocket, WebSocketDisconnect
 from backend.db.orm import SyncOrm
+from backend.chat.routers import chat_router
 
-# Индивидуальный роутер для чата
-chat_router = APIRouter(
-    prefix='/chat',
-    tags=['Chat']
-)
+
 
 syncOrm = SyncOrm()
 
@@ -32,15 +29,8 @@ class ConnectionManager:
 manager = ConnectionManager()
 
 
-@chat_router.get('/')
-def cget():
-    return "asd"
 
 
-@chat_router.get('/last_message/{client_cookie}')
-async def get_last_messages(client_cookie: str) -> dict:
-    syncOrm.select_last_messages(client_cookie)
-    return {'data': None}
 
 
 @chat_router.websocket('/ws/{client_cookie}')
