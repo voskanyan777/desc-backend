@@ -9,3 +9,4 @@ sync_engine = create_engine(
 )
 
 session_factory = sessionmaker(sync_engine)
+
