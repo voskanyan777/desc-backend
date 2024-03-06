@@ -56,4 +56,5 @@ class SyncOrm(object):
             query = select(ChatOrm.message).where(ChatOrm.cookie == client_cookie)
             result = session.execute(query)
             result = result.all()
-            print(result)
+            messages = [row[0] for row in result]
+            return messages

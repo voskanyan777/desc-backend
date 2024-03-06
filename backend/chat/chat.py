@@ -2,8 +2,6 @@ from fastapi import WebSocket, WebSocketDisconnect
 from backend.db.orm import SyncOrm
 from backend.chat.routers import chat_router
 
-
-
 syncOrm = SyncOrm()
 
 
@@ -27,10 +25,6 @@ class ConnectionManager:
 
 
 manager = ConnectionManager()
-
-
-
-
 
 
 @chat_router.websocket('/ws/{client_cookie}')
