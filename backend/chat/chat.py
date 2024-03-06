@@ -37,6 +37,12 @@ def cget():
     return "asd"
 
 
+@chat_router.get('/last_message/{client_cookie}')
+async def get_last_messages(client_cookie: str) -> dict:
+    syncOrm.select_last_messages(client_cookie)
+    return {'data': None}
+
+
 @chat_router.websocket('/ws/{client_cookie}')
 async def websocket_endpoint(websocket: WebSocket, client_cookie: str):
     await manager.connect(websocket)

@@ -37,6 +37,7 @@ class ChatOrm(Base):
     written_at: Mapped[written_at]
 
 
+
 class UserOrm(Base):
     """
     Таблица для хранения данных админа

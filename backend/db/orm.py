@@ -1,10 +1,11 @@
-from sqlalchemy import insert
+from sqlalchemy import insert, select
 from backend.db.models import Base
 from backend.db.database import sync_engine, session_factory
 from backend.db.models import ReviewsOrm, ChatOrm
 
 
 class SyncOrm(object):
+    # Реализация паттерна Singleton
     _instance = None
 
     def __new__(cls, *args, **kwargs):
@@ -49,19 +50,10 @@ class SyncOrm(object):
             session.add_all([message])
             session.commit()
 
-    # @staticmethod
-    # def insert_data():
-    #     reviews = ReviewsOrm(
-    #         user_name='Voskan',
-    #         user_email='79999999999',
-    #         user_reviews='good',
-    #         user_star_rating=3
-    #     )
-    #     chat = ChatOrm(
-    #         user_name='Voskan',
-    #         user_email='79999999999',
-    #         message='Как купить у вас услугу'
-    #     )
-    #     with session_factory() as session:
-    #         session.add_all([reviews, chat])
-    #         session.commit()
+    @staticmethod
+    def select_last_messages(client_cookie: str) -> tuple:
+        with session_factory() as session:
+            query = select(ChatOrm.message).where(ChatOrm.cookie == client_cookie)
+            result = session.execute(query)
+            result = result.all()
+            print(result)
