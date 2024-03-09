@@ -66,3 +66,15 @@ class SyncOrm(object):
             result = result.all()
             messages = [row[0] for row in result]
             return messages
+
+    @staticmethod
+    def insert_user_review_to_db(user_name: str, user_email: str, user_reviews: str, user_star_rating: int) -> None:
+        userReview = ReviewsOrm(
+            user_name=user_name,
+            user_email=user_email,
+            user_reviews=user_reviews,
+            user_star_rating=user_star_rating
+        )
+        with session_factory() as session:
+            session.add_all([userReview])
+            session.commit()

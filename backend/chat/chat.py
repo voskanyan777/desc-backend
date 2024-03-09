@@ -11,7 +11,7 @@ syncOrm = SyncOrm()
 
 class ConnectionManager:
     """
-    Класс храни активные websocket соединения
+    Класс хранит активные websocket соединения
     """
 
     def __init__(self):
@@ -35,6 +35,7 @@ def parse_data(data: dict, client_cookie: str) -> str:
     """
     Функция парсит данные, полученние через websocket
     :param data: полученный словарь с данными
+    :param client_cookie: куки пользователя
     :return: сообщение, введенное пользователем
     """
     user_name = data['user_name']
