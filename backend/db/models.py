@@ -47,7 +47,6 @@ class ChatOrm(Base):
     written_at: Mapped[written_at]
 
 
-
 class UserOrm(Base):
     """
     Таблица для хранения данных админа
@@ -57,4 +56,3 @@ class UserOrm(Base):
     login: Mapped[str] = mapped_column(String(), nullable=False)
     hashed_password: Mapped[str] = mapped_column(String(), nullable=False)
     email: Mapped[str] = mapped_column(String(), nullable=False)
-    

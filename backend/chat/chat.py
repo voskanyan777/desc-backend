@@ -4,7 +4,7 @@
 
 from fastapi import WebSocket, WebSocketDisconnect
 from backend.db.orm import SyncOrm
-from backend.chat.routers import chat_router
+from backend.chat.router import chat_router
 
 syncOrm = SyncOrm()
 
@@ -31,6 +31,23 @@ class ConnectionManager:
 manager = ConnectionManager()
 
 
+def parse_data(data: dict, client_cookie: str) -> str:
+    """
+    Функция парсит данные, полученние через websocket
+    :param data: полученный словарь с данными
+    :return: сообщение, введенное пользователем
+    """
+    user_name = data['user_name']
+    user_email = data['user_email']
+    message = data['message']
+    syncOrm.insert_message_to_db(
+        cookie=client_cookie,
+        user_name=user_name,
+        user_email=user_email,
+        message=message
+    )
+
+
 @chat_router.websocket('/ws/{client_cookie}')
 async def websocket_endpoint(websocket: WebSocket, client_cookie: str) -> None:
     await manager.connect(websocket)
@@ -38,15 +55,7 @@ async def websocket_endpoint(websocket: WebSocket, client_cookie: str) -> None:
         while True:
             # Ожидание ввода (сообщения)
             data = await websocket.receive_json()
-            user_name = data['user_name']
-            user_email = data['user_email']
-            message = data['message']
-            syncOrm.insert_message_to_db(
-                cookie=client_cookie,
-                user_name=user_name,
-                user_email=user_email,
-                message=message
-            )
+            message = parse_data(data)
             await manager.send_personal_message(message, websocket)
     except WebSocketDisconnect:
         manager.disconnect(websocket)
