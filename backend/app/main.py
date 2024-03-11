@@ -11,8 +11,12 @@ from backend.db.orm import SyncOrm
 app = FastAPI()
 app.include_router(chat_router)
 
-if __name__ == '__main__':
+
+@app.on_event('startup')
+async def server_start():
     syncOrm = SyncOrm()
     syncOrm.drop_tables()
     syncOrm.create_tables()
-    uvicorn.run(app)
+
+if __name__ == '__main__':
+    uvicorn.run(app, port=8001)
