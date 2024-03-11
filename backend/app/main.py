@@ -19,4 +19,4 @@ async def server_start():
     syncOrm.create_tables()
 
 if __name__ == '__main__':
-    uvicorn.run(app, port=8001)
+    uvicorn.run(app)
