@@ -47,6 +47,7 @@ def parse_data(data: dict, client_cookie: str) -> str:
         user_email=user_email,
         message=message
     )
+    return message
 
 
 @chat_router.websocket('/ws/{client_cookie}')
@@ -56,7 +57,7 @@ async def websocket_endpoint(websocket: WebSocket, client_cookie: str) -> None:
         while True:
             # Ожидание ввода (сообщения)
             data = await websocket.receive_json()
-            message = parse_data(data)
+            message = parse_data(data, client_cookie)
             await manager.send_personal_message(message, websocket)
     except WebSocketDisconnect:
         manager.disconnect(websocket)
