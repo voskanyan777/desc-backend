@@ -31,7 +31,7 @@ class ConnectionManager:
 manager = ConnectionManager()
 
 
-def parse_data(data: dict, client_cookie: str) -> str:
+def parse_data(data: dict) -> str:
     """
     Функция парсит данные, полученние через websocket
     :param data: полученный словарь с данными
@@ -49,14 +49,14 @@ def parse_data(data: dict, client_cookie: str) -> str:
     return message
 
 
-@chat_router.websocket('/ws/{client_cookie}')
-async def websocket_endpoint(websocket: WebSocket, client_cookie: str) -> None:
+@chat_router.websocket('/ws/')
+async def websocket_endpoint(websocket: WebSocket) -> None:
     await manager.connect(websocket)
     try:
         while True:
             # Ожидание ввода (сообщения)
             data = await websocket.receive_json()
-            message = parse_data(data, client_cookie)
+            message = parse_data(data)
             await manager.send_personal_message(message, websocket)
     except WebSocketDisconnect:
         manager.disconnect(websocket)
