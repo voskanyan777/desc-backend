@@ -1,7 +1,6 @@
 """
 Модуль содержит функционал роутера для чата
 """
-from typing import Annotated
 from fastapi import APIRouter
 from pydantic import EmailStr
 from backend.db.orm import SyncOrm
@@ -17,7 +16,7 @@ chat_router = APIRouter(
 
 
 @chat_router.get('/last_message/')
-async def get_last_messages(user_email: Annotated[str, EmailStr]) -> dict:
+async def get_last_messages(user_email: str) -> dict:
     """
     Функция возвращает последние сообщение клинета
     :param user_email: почта пользователя
