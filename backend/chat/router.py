@@ -31,7 +31,11 @@ async def get_last_messages(user_email: str) -> dict:
 
 
 @chat_router.post('/add_review')
-async def add_review(review: ReviewModel):
+async def add_review(review: ReviewModel) -> dict:
+    """
+    Функция принимает отзыв пользователя и записывает его в БД
+    """
+
     syncOrm.insert_user_review_to_db(**review.dict())
     return {
         'data': None,

@@ -51,6 +51,9 @@ def parse_data(data: dict) -> str:
 
 @chat_router.websocket('/ws/')
 async def websocket_endpoint(websocket: WebSocket) -> None:
+    """
+    Функция обрабатывает поступившые сообщения через websocket
+    """
     await manager.connect(websocket)
     try:
         while True:

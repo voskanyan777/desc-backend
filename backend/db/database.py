@@ -1,5 +1,7 @@
-from sqlalchemy.ext.asyncio import async_sessionmaker
-from sqlalchemy.orm import sessionmaker, DeclarativeBase
+"""
+Модуль для настройки параметров БД
+"""
+from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
 from backend.db.config import settings
 
