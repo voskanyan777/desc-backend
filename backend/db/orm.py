@@ -35,7 +35,7 @@ class SyncOrm(object):
         Base.metadata.create_all(sync_engine)
 
     @staticmethod
-    def insert_message_to_db(cookie: str, user_name: str, user_email: str, message: str) -> None:
+    def insert_message_to_db(user_name: str, user_email: str, message: str) -> None:
         """
         Метод добавляет сообщение пользоваеля из тех.поддержки
         в таблицу базы данных
@@ -46,7 +46,6 @@ class SyncOrm(object):
         :return: None
         """
         message = ChatOrm(
-            cookie=cookie,
             user_name=user_name,
             user_email=user_email,
             message=message

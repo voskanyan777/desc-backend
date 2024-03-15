@@ -42,7 +42,6 @@ def parse_data(data: dict, client_cookie: str) -> str:
     user_email = data['user_email']
     message = data['message']
     syncOrm.insert_message_to_db(
-        cookie=client_cookie,
         user_name=user_name,
         user_email=user_email,
         message=message
