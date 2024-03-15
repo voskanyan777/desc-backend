@@ -32,7 +32,7 @@ async def get_last_messages(user_email: str) -> dict:
 
 @chat_router.post('/add_review')
 async def add_review(review: ReviewModel):
-    syncOrm.insert_user_review_to_db(review.user_name, review.user_email, review.user_reviews, review.user_star_rating)
+    syncOrm.insert_user_review_to_db(**review.dict())
     return {
         'data': None,
         'status': 'success',
