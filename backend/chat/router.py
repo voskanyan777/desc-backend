@@ -24,8 +24,7 @@ async def get_last_messages(client_cookie: str) -> dict:
     messages: list = syncOrm.select_last_messages(client_cookie)
     return {
         'data': messages,
-        'status': 'success',
-        'detail': None
+        'status': 'ok'
     }
 
 
@@ -34,6 +33,5 @@ async def add_review(review: ReviewModel):
     syncOrm.insert_user_review_to_db(review.user_name, review.user_email, review.user_reviews, review.user_star_rating)
     return {
         'data': None,
-        'status': 'success',
-        'detail': None
+        'status': 'ok'
     }
