@@ -35,18 +35,16 @@ class SyncOrm(object):
         Base.metadata.create_all(sync_engine)
 
     @staticmethod
-    def insert_message_to_db(cookie: str, user_name: str, user_email: str, message: str) -> None:
+    def insert_message_to_db(user_name: str, user_email: str, message: str) -> None:
         """
         Метод добавляет сообщение пользоваеля из тех.поддержки
         в таблицу базы данных
-        :param cookie: текущий куки пользователя
         :param user_name: имя пользователя
         :param user_email: электронная почта пользователя
         :param message: введенное сообщение
         :return: None
         """
         message = ChatOrm(
-            cookie=cookie,
             user_name=user_name,
             user_email=user_email,
             message=message
@@ -56,12 +54,12 @@ class SyncOrm(object):
             session.commit()
 
     @staticmethod
-    def select_last_messages(client_cookie: str) -> list:
+    def select_last_messages(user_email: str) -> list:
         """
-        Метод делает выборку последних сообщении пользоваеля по его куки
+        Метод делает выборку последних сообщении пользоваеля по его почте
         """
         with session_factory() as session:
-            query = select(ChatOrm.message).where(ChatOrm.cookie == client_cookie)
+            query = select(ChatOrm.message).where(ChatOrm.user_email == user_email)
             result = session.execute(query)
             result = result.all()
             messages = [row[0] for row in result]
