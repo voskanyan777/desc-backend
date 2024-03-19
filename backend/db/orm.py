@@ -1,7 +1,7 @@
 """
 Модуль для работы с запросами в базу данных
 """
-from sqlalchemy import insert, select
+from sqlalchemy import select
 from backend.db.models import Base
 from backend.db.database import sync_engine, session_factory
 from backend.db.models import ReviewsOrm, ChatOrm
