@@ -4,7 +4,7 @@
 from sqlalchemy import select
 from backend.db.models import Base
 from backend.db.database import sync_engine, session_factory
-from backend.db.models import ReviewsOrm, ChatOrm
+from backend.db.models import ReviewsOrm, ChatOrm, UserOrm
 
 
 class SyncOrm(object):
@@ -76,3 +76,20 @@ class SyncOrm(object):
         with session_factory() as session:
             session.add_all([userReview])
             session.commit()
+    @staticmethod
+    def add_user(login: str, user_email: str, hashed_password: str) -> None:
+        user = UserOrm(
+            login=login,
+            email=user_email,
+            hashed_password=hashed_password
+        )
+        with session_factory() as session:
+            session.add_all([user])
+            session.commit()
+
+    @staticmethod
+    def get_user(email: str) -> list:
+        with session_factory() as session:
+            query = select(UserOrm.login, UserOrm.hashed_password, UserOrm.email).where(UserOrm.email == email)
+            result = session.execute(query).first()
+            return result

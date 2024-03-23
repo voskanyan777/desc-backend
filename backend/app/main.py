@@ -8,19 +8,11 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from backend.chat.chat import chat_router
 from backend.db.orm import SyncOrm
+from backend.auth.auth_jwt import router as auth_router
 
 app = FastAPI()
 app.include_router(chat_router)
-
-origins = [
-    "http://localhost:3000",
-]
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,
-    allow_methods=["GET", "POST", "OPTIONS", "DELETE", "PATCH", "PUT"],
-)
+app.include_router(auth_router)
 
 
 @app.on_event('startup')
