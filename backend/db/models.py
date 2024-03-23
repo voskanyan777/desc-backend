@@ -52,6 +52,6 @@ class UserOrm(Base):
     """
     __tablename__ = "users"
     id: Mapped[intpk]
-    login: Mapped[str] = mapped_column(String(), nullable=False)
-    hashed_password: Mapped[str] = mapped_column(String(), nullable=False)
-    email: Mapped[str] = mapped_column(String(), nullable=False)
+    login: Mapped[str] = mapped_column(nullable=False)
+    hashed_password: Mapped[bytes] = mapped_column(nullable=False)
+    email: Mapped[str] = mapped_column(nullable=False)
