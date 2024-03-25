@@ -93,3 +93,17 @@ class SyncOrm(object):
             query = select(UserOrm.login, UserOrm.hashed_password, UserOrm.email).where(UserOrm.email == email)
             result = session.execute(query).first()
             return result
+    @staticmethod
+    def get_user_reviews(offset: int) -> dict:
+        with session_factory() as session:
+            query = select(ReviewsOrm).limit(5).offset(offset)
+            result = session.execute(query).scalars().all()
+            result_dict = dict()
+            for element in result:
+                result_dict[element.user_email] = {
+                    'user_name': element.user_name,
+                    'user_review': element.user_reviews,
+                    'user_star_rating': element.user_star_rating,
+                    'written_at': element.written_at
+                }
+            return result_dict

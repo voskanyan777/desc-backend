@@ -42,3 +42,13 @@ async def add_review(review: ReviewModel, user: UserSchema = Depends(get_current
         'data': None,
         'status': 'ok'
     }
+
+
+@chat_router.get('/user_reviews')
+async def get_user_reviews(offset: int = 0,
+                           user: UserSchema = Depends(get_current_active_auth_user)) -> dict:
+    result = sync_orm.get_user_reviews(offset)
+    return {
+        'data': result,
+        'status': 'ok'
+    }
