@@ -18,7 +18,7 @@ app.include_router(auth_router)
 @app.on_event('startup')
 async def server_start():
     syncOrm = SyncOrm()
-    syncOrm.drop_tables()
+    # syncOrm.drop_tables()
     syncOrm.create_tables()
 
 

@@ -1,10 +1,12 @@
 """
 Модуль содержит функционал роутера для чата
 """
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 from pydantic import EmailStr
 from backend.db.orm import SyncOrm
 from backend.chat.models import ReviewModel
+from backend.auth.schemas import UserSchema
+from backend.auth.auth_jwt import get_current_active_auth_user
 
 syncOrm = SyncOrm()
 
@@ -30,7 +32,7 @@ async def get_last_messages(user_email: str) -> dict:
 
 
 @chat_router.post('/add_review')
-async def add_review(review: ReviewModel) -> dict:
+async def add_review(review: ReviewModel, user: UserSchema = Depends(get_current_active_auth_user)) -> dict:
     """
     Функция принимает отзыв пользователя и записывает его в БД
     """
