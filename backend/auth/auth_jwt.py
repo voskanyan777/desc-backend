@@ -81,8 +81,8 @@ def get_current_token_payload_user(
 
 
 def get_current_auth_user(payload: dict = Depends(get_current_token_payload_user)) -> UserSchema:
-    useremail: str | None = payload.get('email')
-    user = sync_orm.get_user(useremail)
+    user_email: str | None = payload.get('email')
+    user = sync_orm.get_user(user_email)
     if not user:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,

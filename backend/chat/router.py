@@ -8,7 +8,7 @@ from backend.chat.models import ReviewModel
 from backend.auth.schemas import UserSchema
 from backend.auth.auth_jwt import get_current_active_auth_user
 
-syncOrm = SyncOrm()
+sync_orm = SyncOrm()
 
 # Индивидуальный роутер для чата
 chat_router = APIRouter(
@@ -24,7 +24,7 @@ async def get_last_messages(user_email: str, user: UserSchema = Depends(get_curr
     :param user_email: почта пользователя
     :return: JSON объект. 'data' - Список со всеми сообщениями
     """
-    messages: list = syncOrm.select_last_messages(user_email)
+    messages: list = sync_orm.select_last_messages(user_email)
     return {
         'data': messages,
         'status': 'ok'
@@ -37,7 +37,7 @@ async def add_review(review: ReviewModel, user: UserSchema = Depends(get_current
     Функция принимает отзыв пользователя и записывает его в БД
     """
 
-    syncOrm.insert_user_review_to_db(**review.dict())
+    sync_orm.insert_user_review_to_db(**review.dict())
     return {
         'data': None,
         'status': 'ok'

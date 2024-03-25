@@ -6,7 +6,7 @@ from fastapi import WebSocket, WebSocketDisconnect
 from backend.db.orm import SyncOrm
 from backend.chat.router import chat_router
 
-syncOrm = SyncOrm()
+sync_orm = SyncOrm()
 
 
 class ConnectionManager:
@@ -41,7 +41,7 @@ def parse_data(data: dict) -> str:
     user_name = data['user_name']
     user_email = data['user_email']
     message = data['message']
-    syncOrm.insert_message_to_db(
+    sync_orm.insert_message_to_db(
         user_name=user_name,
         user_email=user_email,
         message=message
