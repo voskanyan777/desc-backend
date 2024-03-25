@@ -3,9 +3,10 @@ from fastapi import APIRouter, Depends, Form, HTTPException, status, FastAPI
 from .schemas import UserSchema
 from .utils import *
 from pydantic import BaseModel
-import uvicorn
 from backend.db.orm import SyncOrm
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials, OAuth2PasswordBearer
+
+
 
 http_bearer = HTTPBearer()
 

@@ -18,7 +18,7 @@ chat_router = APIRouter(
 
 
 @chat_router.get('/last_message/')
-async def get_last_messages(user_email: str) -> dict:
+async def get_last_messages(user_email: str, user: UserSchema = Depends(get_current_active_auth_user)) -> dict:
     """
     Функция возвращает последние сообщение клинета
     :param user_email: почта пользователя
