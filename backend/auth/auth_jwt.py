@@ -20,8 +20,8 @@ class Token(BaseModel):
 
 
 router = APIRouter(
-    prefix='/jwt/auth',
-    tags=['jwt']
+    prefix='/auth',
+    tags=['auth']
 )
 
 
