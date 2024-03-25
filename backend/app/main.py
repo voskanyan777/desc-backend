@@ -25,9 +25,9 @@ app.add_middleware(
 @app.on_event('startup')
 async def server_start():
     sync_orm = SyncOrm()
-    sync_orm.drop_tables()
+    # sync_orm.drop_tables()
     sync_orm.create_tables()
 
 
 if __name__ == '__main__':
-    uvicorn.run(app, port=8000)
+    uvicorn.run(app, port=8002)
