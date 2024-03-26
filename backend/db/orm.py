@@ -46,6 +46,7 @@ class SyncOrm(object):
         """
         message = ChatOrm(
             user_name=user_name,
+            role='user',
             user_email=user_email,
             message=message
         )

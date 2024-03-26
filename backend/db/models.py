@@ -39,8 +39,12 @@ class ChatOrm(Base):
     Модель таблицы, которая содержить все сообщения пользователей
     """
     __tablename__ = "chat"
+    __table_args__ = (
+        CheckConstraint("role in ('user', 'admin')"),
+    )
     id: Mapped[intpk]
     user_name: Mapped[user_name]
+    role: Mapped[str] = mapped_column(nullable=False)
     user_email: Mapped[user_email]
     message: Mapped[message]
     written_at: Mapped[written_at]
@@ -55,11 +59,3 @@ class UserOrm(Base):
     login: Mapped[str] = mapped_column(nullable=False)
     hashed_password: Mapped[bytes] = mapped_column(nullable=False)
     email: Mapped[str] = mapped_column(nullable=False)
-
-
-class AdminRepliesOrm(Base):
-    __tablename__ = 'admin_replies'
-    id: Mapped[intpk]
-    user_email: Mapped[user_email]
-    message: Mapped[message]
-    written_at: Mapped[written_at]
