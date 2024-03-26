@@ -22,6 +22,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 @app.on_event('startup')
 async def server_start():
     sync_orm = SyncOrm()

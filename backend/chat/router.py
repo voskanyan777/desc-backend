@@ -1,8 +1,8 @@
 """
 Модуль содержит функционал роутера для чата
 """
-from fastapi import APIRouter, Depends
-from pydantic import EmailStr
+from fastapi import APIRouter, Depends, File, UploadFile
+from fastapi.responses import JSONResponse
 from backend.db.orm import SyncOrm
 from backend.chat.models import ReviewModel
 from backend.auth.schemas import UserSchema
@@ -52,3 +52,6 @@ async def get_user_reviews(offset: int = 0,
         'data': result,
         'status': 'ok'
     }
+
+
+
