@@ -11,7 +11,7 @@ written_at = Annotated[datetime, mapped_column(server_default=text("TIMEZONE('ut
 user_name = Annotated[str, mapped_column(String(70), nullable=False)]
 user_email = Annotated[str, mapped_column(String(90), nullable=False)]
 intpk = Annotated[int, mapped_column(primary_key=True)]
-
+message = Annotated[str, mapped_column(String(300), nullable=False)]
 
 # Базовый класс
 class Base(DeclarativeBase):
@@ -42,7 +42,7 @@ class ChatOrm(Base):
     id: Mapped[intpk]
     user_name: Mapped[user_name]
     user_email: Mapped[user_email]
-    message: Mapped[str] = mapped_column(String(300), nullable=False)
+    message: Mapped[message]
     written_at: Mapped[written_at]
 
 
@@ -55,3 +55,11 @@ class UserOrm(Base):
     login: Mapped[str] = mapped_column(nullable=False)
     hashed_password: Mapped[bytes] = mapped_column(nullable=False)
     email: Mapped[str] = mapped_column(nullable=False)
+
+
+class AdminRepliesOrm(Base):
+    __tablename__ = 'admin_replies'
+    id: Mapped[intpk]
+    user_email: Mapped[user_email]
+    message: Mapped[message]
+    written_at: Mapped[written_at]

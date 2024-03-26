@@ -28,7 +28,7 @@ app.add_middleware(
 @app.on_event('startup')
 async def server_start():
     sync_orm = SyncOrm()
-    # sync_orm.drop_tables()
+    sync_orm.drop_tables()
     sync_orm.create_tables()
 
 
