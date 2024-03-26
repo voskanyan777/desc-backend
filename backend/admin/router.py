@@ -33,3 +33,20 @@ async def get_last_messages(user_email: str) -> dict:
         'data': messages,
         'status': 'ok'
     }
+
+
+@admin_router.post('/admin_message')
+async def admin_message(user_email: str, message: str,
+                        user: UserSchema = Depends(get_current_active_auth_user)) -> dict:
+    sync_orm.insert_message_to_db(
+        user_name='admin',
+        role='admin',
+        user_email=user_email,
+        message=message
+    )
+    if manager.active_connections.get(user_email):
+        await manager.send_personal_message(message, manager.active_connections[user_email])
+    return {
+        'data': None,
+        'status': 'ok'
+    }

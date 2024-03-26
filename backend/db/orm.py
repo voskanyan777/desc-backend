@@ -35,7 +35,7 @@ class SyncOrm(object):
         Base.metadata.create_all(sync_engine)
 
     @staticmethod
-    def insert_message_to_db(user_name: str, user_email: str, message: str) -> None:
+    def insert_message_to_db(user_name: str, role: str, user_email: str, message: str) -> None:
         """
         Метод добавляет сообщение пользоваеля из тех.поддержки
         в таблицу базы данных
@@ -46,7 +46,7 @@ class SyncOrm(object):
         """
         message = ChatOrm(
             user_name=user_name,
-            role='user',
+            role=role,
             user_email=user_email,
             message=message
         )
@@ -77,6 +77,7 @@ class SyncOrm(object):
         with session_factory() as session:
             session.add_all([userReview])
             session.commit()
+
     @staticmethod
     def add_user(login: str, user_email: str, hashed_password: str) -> None:
         user = UserOrm(
@@ -94,6 +95,7 @@ class SyncOrm(object):
             query = select(UserOrm.login, UserOrm.hashed_password, UserOrm.email).where(UserOrm.email == email)
             result = session.execute(query).first()
             return result
+
     @staticmethod
     def get_user_reviews(offset: int) -> dict:
         with session_factory() as session:

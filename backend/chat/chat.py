@@ -43,6 +43,7 @@ def parse_data(data: dict) -> str:
     message = data['message']
     sync_orm.insert_message_to_db(
         user_name=user_name,
+        role='user',
         user_email=user_email,
         message=message
     )
@@ -63,3 +64,13 @@ async def websocket_endpoint(user_email: str, websocket: WebSocket) -> None:
             await manager.send_personal_message(message, websocket)
     except WebSocketDisconnect:
         manager.disconnect(websocket, user_email)
+
+
+@chat_router.post('/test')
+async def test_func(user_email: str, message: str):
+    if manager.active_connections.get(user_email):
+        await manager.send_personal_message(message, manager.active_connections[user_email])
+    return {
+        'data': None,
+        'status': 'ok'
+    }
