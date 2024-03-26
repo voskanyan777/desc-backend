@@ -8,11 +8,13 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from backend.chat.chat import chat_router
 from backend.db.orm import SyncOrm
-from backend.auth.auth_jwt import router as auth_router
+from backend.auth.auth_jwt import auth_router
+from backend.admin.router import admin_router
 
 app = FastAPI()
 app.include_router(chat_router)
 app.include_router(auth_router)
+app.include_router(admin_router)
 
 app.add_middleware(
     CORSMiddleware,

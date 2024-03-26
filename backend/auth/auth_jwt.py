@@ -20,7 +20,7 @@ class Token(BaseModel):
     token_type: str
 
 
-router = APIRouter(
+auth_router = APIRouter(
     prefix='/auth',
     tags=['auth']
 )
@@ -54,7 +54,7 @@ def validate_auth_user(
     return user
 
 
-@router.post('/login/', response_model=Token)
+@auth_router.post('/login/', response_model=Token)
 def auth_user(user: UserSchema = Depends(validate_auth_user)) -> Token:
     jwt_payload = {
         'sub': user.login,
@@ -101,7 +101,7 @@ def get_current_active_auth_user(user: UserSchema = Depends(get_current_auth_use
     )
 
 
-@router.get('/users/me')
+@auth_router.get('/users/me')
 def auth_user_check_self_info(user: UserSchema = Depends(get_current_active_auth_user)):
     return {
         'username': user.login,
@@ -109,7 +109,7 @@ def auth_user_check_self_info(user: UserSchema = Depends(get_current_active_auth
     }
 
 
-@router.post('/registration')
+@auth_router.post('/registration')
 def user_registration(login: str, user_email: str, password: str):
     hashed_password = hash_password(password)
     sync_orm.add_user(login, user_email, hashed_password)
