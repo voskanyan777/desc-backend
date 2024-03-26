@@ -15,14 +15,14 @@ class ConnectionManager:
     """
 
     def __init__(self):
-        self.active_connections: list[WebSocket] = []
+        self.active_connections: dict[str, WebSocket] = {}
 
-    async def connect(self, websocket: WebSocket):
+    async def connect(self, websocket: WebSocket, user_email: str):
         await websocket.accept()
-        self.active_connections.append(websocket)
+        self.active_connections['user_email'] = websocket
 
-    def disconnect(self, websocket: WebSocket):
-        self.active_connections.remove(websocket)
+    def disconnect(self, websocket: WebSocket, user_email: str):
+        del self.active_connections[user_email]
 
     async def send_personal_message(self, message: str, websocket: WebSocket):
         await websocket.send_text(message)
@@ -49,12 +49,12 @@ def parse_data(data: dict) -> str:
     return message
 
 
-@chat_router.websocket('/ws/')
-async def websocket_endpoint(websocket: WebSocket) -> None:
+@chat_router.websocket('/ws/{user_email}')
+async def websocket_endpoint(user_email: str, websocket: WebSocket) -> None:
     """
     Функция обрабатывает поступившые сообщения через websocket
     """
-    await manager.connect(websocket)
+    await manager.connect(websocket, user_email)
     try:
         while True:
             # Ожидание ввода (сообщения)
@@ -62,4 +62,4 @@ async def websocket_endpoint(websocket: WebSocket) -> None:
             message = parse_data(data)
             await manager.send_personal_message(message, websocket)
     except WebSocketDisconnect:
-        manager.disconnect(websocket)
+        manager.disconnect(websocket, user_email)

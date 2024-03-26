@@ -2,17 +2,18 @@ from fastapi import APIRouter, Depends
 from backend.db.orm import SyncOrm
 from backend.auth.schemas import UserSchema
 from backend.auth.auth_jwt import get_current_active_auth_user
+from backend.chat.chat import manager
 
 admin_router = APIRouter(
     prefix='/admin',
-    tags=['admin']
+    tags=['admin'],
+    dependencies=[Depends(get_current_active_auth_user)]
 )
 sync_orm = SyncOrm()
 
 
 @admin_router.get('/user_reviews')
-async def get_user_reviews(offset: int = 0,
-                           user: UserSchema = Depends(get_current_active_auth_user)) -> dict:
+async def get_user_reviews(offset: int = 0) -> dict:
     result = sync_orm.get_user_reviews(offset)
     return {
         'data': result,
@@ -21,7 +22,7 @@ async def get_user_reviews(offset: int = 0,
 
 
 @admin_router.get('/last_message/')
-async def get_last_messages(user_email: str, user: UserSchema = Depends(get_current_active_auth_user)) -> dict:
+async def get_last_messages(user_email: str) -> dict:
     """
     Функция возвращает последние сообщение клинета
     :param user_email: почта пользователя
@@ -30,5 +31,13 @@ async def get_last_messages(user_email: str, user: UserSchema = Depends(get_curr
     messages: list = sync_orm.select_last_messages(user_email)
     return {
         'data': messages,
+        'status': 'ok'
+    }
+
+
+@admin_router.get('/websockets')
+async def get_websockets():
+    return {
+        'data': manager.active_connections,
         'status': 'ok'
     }
