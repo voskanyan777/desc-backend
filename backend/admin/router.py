@@ -33,11 +33,3 @@ async def get_last_messages(user_email: str) -> dict:
         'data': messages,
         'status': 'ok'
     }
-
-
-@admin_router.get('/websockets')
-async def get_websockets():
-    return {
-        'data': manager.active_connections,
-        'status': 'ok'
-    }

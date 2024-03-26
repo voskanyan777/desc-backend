@@ -19,7 +19,7 @@ class ConnectionManager:
 
     async def connect(self, websocket: WebSocket, user_email: str):
         await websocket.accept()
-        self.active_connections['user_email'] = websocket
+        self.active_connections[user_email] = websocket
 
     def disconnect(self, websocket: WebSocket, user_email: str):
         del self.active_connections[user_email]
