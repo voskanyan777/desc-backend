@@ -6,14 +6,14 @@ from backend.chat.chat import manager
 
 admin_router = APIRouter(
     prefix='/admin',
-    tags=['admin'],
-    dependencies=[Depends(get_current_active_auth_user)]
+    tags=['admin']
 )
 sync_orm = SyncOrm()
 
 
 @admin_router.get('/user_reviews')
-async def get_user_reviews(offset: int = 0) -> dict:
+async def get_user_reviews(offset: int = 0,
+                           user: UserSchema = Depends(get_current_active_auth_user)) -> dict:
     result = sync_orm.get_user_reviews(offset)
     return {
         'data': result,
