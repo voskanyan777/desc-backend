@@ -66,11 +66,12 @@ async def websocket_endpoint(user_email: str, websocket: WebSocket) -> None:
         manager.disconnect(websocket, user_email)
 
 
-@chat_router.post('/test')
-async def test_func(user_email: str, message: str):
-    if manager.active_connections.get(user_email):
-        await manager.send_personal_message(message, manager.active_connections[user_email])
-    return {
-        'data': None,
-        'status': 'ok'
-    }
+# @chat_router.post('/test')
+# async def test_func(user_email: str, message: str):
+#     if manager.active_connections.get(user_email):
+#         await manager.send_personal_message(message, manager.active_connections[user_email])
+#     return {
+#         'data': None,
+#         'status': 'ok'
+#     }
+
