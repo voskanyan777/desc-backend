@@ -11,6 +11,7 @@ admin_router = APIRouter(
     tags=['admin']
 )
 sync_orm = SyncOrm()
+BASE_DIR = Path(__file__).parent
 
 
 @admin_router.get('/user_reviews')
@@ -56,9 +57,6 @@ async def admin_message(user_email: str, message: str,
         'data': None,
         'status': 'ok'
     }
-
-
-BASE_DIR = Path(__file__).parent
 
 
 @admin_router.get('/change_information')

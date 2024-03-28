@@ -7,7 +7,7 @@ from backend.db.config import settings
 
 sync_engine = create_engine(
     url=settings.DATABASE_URL_psycopg,
-    echo=True,  # Логирование
+    echo=False,  # Логирование
 )
 
 session_factory = sessionmaker(sync_engine)

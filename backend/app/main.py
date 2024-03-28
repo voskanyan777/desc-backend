@@ -10,6 +10,8 @@ from backend.chat.chat import chat_router
 from backend.db.orm import SyncOrm
 from backend.auth.auth_jwt import auth_router
 from backend.admin.router import admin_router
+from pathlib import Path
+import logging
 
 app = FastAPI()
 app.include_router(chat_router)
@@ -24,9 +26,14 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+BASE_DIR = Path(__file__).parent.parent
+logger = logging.getLogger('system')
+
 
 @app.on_event('startup')
 async def server_start():
+    logging.basicConfig(filename=BASE_DIR / 'logs.log', level=logging.INFO)
+    logger.info('starter')
     sync_orm = SyncOrm()
     # sync_orm.drop_tables()
     sync_orm.create_tables()
