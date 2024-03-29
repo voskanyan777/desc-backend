@@ -28,7 +28,6 @@ async def get_user_reviews(offset: int = 0,
 async def get_last_messages() -> dict:
     """
     Функция возвращает последние сообщение клинета
-    :param user_email: почта пользователя
     :return: JSON объект. 'data' - Список со всеми сообщениями
     """
     messages: list = sync_orm.select_last_messages()
