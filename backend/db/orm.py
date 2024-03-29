@@ -55,12 +55,12 @@ class SyncOrm(object):
             session.commit()
 
     @staticmethod
-    def select_last_messages(user_email: str) -> list:
+    def select_last_messages() -> list:
         """
         Метод делает выборку последних сообщении пользоваеля по его почте
         """
         with session_factory() as session:
-            query = select(ChatOrm.message).where(ChatOrm.user_email == user_email)
+            query = select(ChatOrm.message)
             result = session.execute(query)
             result = result.all()
             messages = [row[0] for row in result]

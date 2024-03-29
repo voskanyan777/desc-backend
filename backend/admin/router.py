@@ -25,13 +25,13 @@ async def get_user_reviews(offset: int = 0,
 
 
 @admin_router.get('/last_message/')
-async def get_last_messages(user_email: str) -> dict:
+async def get_last_messages() -> dict:
     """
     Функция возвращает последние сообщение клинета
     :param user_email: почта пользователя
     :return: JSON объект. 'data' - Список со всеми сообщениями
     """
-    messages: list = sync_orm.select_last_messages(user_email)
+    messages: list = sync_orm.select_last_messages()
     return {
         'data': messages,
         'status': 'ok'
