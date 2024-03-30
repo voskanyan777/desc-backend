@@ -5,6 +5,7 @@ from backend.auth.auth_jwt import get_current_active_auth_user
 from backend.chat.chat import manager
 from bs4 import BeautifulSoup
 from pathlib import Path
+from backend.app.logger_file import logger
 
 admin_router = APIRouter(
     prefix='/admin',
@@ -18,6 +19,7 @@ BASE_DIR = Path(__file__).parent
 async def get_user_reviews(offset: int = 0,
                            user: UserSchema = Depends(get_current_active_auth_user)) -> dict:
     result = sync_orm.get_user_reviews(offset)
+    logger.info(f'The administrator has made a request for user reviews. {offset=}')
     return {
         'data': result,
         'status': 'ok'
@@ -25,12 +27,13 @@ async def get_user_reviews(offset: int = 0,
 
 
 @admin_router.get('/last_message/')
-async def get_last_messages(offset: int = 5) -> dict:
+async def get_last_messages(offset: int = 0) -> dict:
     """
     Функция возвращает последние сообщение клинета
     :return: JSON объект. 'data' - Список со всеми сообщениями
     """
     messages: list = sync_orm.select_last_messages(offset)
+    logger.info(f'The administrator has made a request to receive the latest messages. {offset=}')
     return {
         'data': messages,
         'status': 'ok'
@@ -52,6 +55,7 @@ async def admin_message(user_email: str, message: str,
             detail='user email not found'
         )
     await manager.send_personal_message(message, manager.active_connections[user_email])
+    logger.info(f'The admin replied to the user {user_email} with the message: {message}')
     return {
         'data': None,
         'status': 'ok'
@@ -77,3 +81,8 @@ async def change_html_information(tag: str, class_: str, new_value: str,
     # Сохраняем изменения обратно в файл
     with open(BASE_DIR / "index.html", "w") as file:
         file.write(str(soup))
+    logger.info(f'The admin changed the information on the html page. {tag=}, {class_=}, {new_value=}')
+    return {
+        'data': None,
+        'status': 'ok'
+    }
