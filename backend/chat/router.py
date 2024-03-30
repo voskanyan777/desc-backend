@@ -4,7 +4,7 @@
 from fastapi import APIRouter
 from backend.db.orm import SyncOrm
 from backend.chat.models import ReviewModel
-
+from backend.app.logger_file import logger
 
 sync_orm = SyncOrm()
 
@@ -22,6 +22,7 @@ async def add_review(review: ReviewModel) -> dict:
     """
 
     sync_orm.insert_user_review_to_db(**review.dict())
+    logger.info(f'Added user review. User: {review.user_email}')
     return {
         'data': None,
         'status': 'ok'

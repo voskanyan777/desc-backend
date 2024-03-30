@@ -5,7 +5,7 @@ from .utils import *
 from pydantic import BaseModel
 from backend.db.orm import SyncOrm
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials, OAuth2PasswordBearer
-
+from backend.app.logger_file import logger
 
 
 http_bearer = HTTPBearer()
@@ -61,6 +61,7 @@ def auth_user(user: UserSchema = Depends(validate_auth_user)) -> Token:
         'email': user.email
     }
     token = encode_jwt(jwt_payload)
+    logger.info(f'The admin {user.login}/{user.email} has logged in')
     return Token(
         access_token=token,
         token_type='Bearer'

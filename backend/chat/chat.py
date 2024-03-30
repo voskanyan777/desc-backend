@@ -56,6 +56,7 @@ async def websocket_endpoint(user_email: str, websocket: WebSocket) -> None:
     Функция обрабатывает поступившые сообщения через websocket
     """
     await manager.connect(websocket, user_email)
+    logger.info(f'User {user_email} has joined the chat')
     try:
         while True:
             # Ожидание ввода (сообщения)
@@ -64,6 +65,7 @@ async def websocket_endpoint(user_email: str, websocket: WebSocket) -> None:
             logger.info(f'The user {user_email} wrote the message: {message}')
             await manager.send_personal_message(message, websocket)
     except WebSocketDisconnect:
+        logger.info(f'User {user_email} has left the chat')
         manager.disconnect(websocket, user_email)
 
 
