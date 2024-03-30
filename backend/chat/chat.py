@@ -36,7 +36,6 @@ def parse_data(data: dict) -> str:
     """
     Функция парсит данные, полученние через websocket
     :param data: полученный словарь с данными
-    :param client_cookie: куки пользователя
     :return: сообщение, введенное пользователем
     """
     user_name = data['user_name']
