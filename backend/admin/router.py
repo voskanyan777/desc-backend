@@ -49,12 +49,8 @@ async def admin_message(user_email: str, message: str,
         user_email=user_email,
         message=message
     )
-    if not manager.active_connections.get(user_email):
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail='user email not found'
-        )
-    await manager.send_personal_message(message, manager.active_connections[user_email])
+    if manager.active_connections.get(user_email):
+        await manager.send_personal_message(message, manager.active_connections[user_email])
     logger.info(f'The admin replied to the user {user_email} with the message: {message}')
     return {
         'data': None,

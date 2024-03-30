@@ -8,6 +8,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 BASE_DIR = Path(__file__).parent
 
+
 class Settings(BaseSettings):
     DB_HOST: str
     DB_PORT: str

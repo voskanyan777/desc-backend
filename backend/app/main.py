@@ -30,7 +30,7 @@ app.add_middleware(
 async def server_start():
     logger.info('API started')
     sync_orm = SyncOrm()
-    # sync_orm.drop_tables()
+    sync_orm.drop_tables()
     sync_orm.create_tables()
 
 
