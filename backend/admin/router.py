@@ -27,7 +27,7 @@ async def get_user_reviews(offset: int = 0,
 
 
 @admin_router.get('/last_message/')
-async def get_last_messages(offset: int = 0) -> dict:
+async def get_last_messages(offset: int = 0, user: UserSchema = Depends(get_current_active_auth_user)) -> dict:
     """
     Функция возвращает последние сообщение клинета
     :return: JSON объект. 'data' - Список со всеми сообщениями

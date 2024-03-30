@@ -27,3 +27,12 @@ async def add_review(review: ReviewModel) -> dict:
         'data': None,
         'status': 'ok'
     }
+
+
+@chat_router.get('/user_last_messages')
+async def get_user_last_messages(user_email: str) -> dict:
+    messages = sync_orm.select_user_last_messages(user_email)
+    return {
+        'data': messages,
+        'status': 'ok'
+    }

@@ -65,7 +65,14 @@ class SyncOrm(object):
             result = result.all()
             messages = [row[0] for row in result]
             return messages
-
+    @staticmethod
+    def select_user_last_messages(user_email: str) -> list:
+        with session_factory() as session:
+            query = select(ChatOrm.message).where(ChatOrm.user_email == user_email)
+            result = session.execute(query)
+            result = result.all()
+            messages = [row[0] for row in result]
+            return messages
     @staticmethod
     def insert_user_review_to_db(user_name: str, user_email: str, user_reviews: str, user_star_rating: int) -> None:
         userReview = ReviewsOrm(

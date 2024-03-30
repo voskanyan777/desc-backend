@@ -45,3 +45,26 @@
 2024-03-30 23:01:09 - INFO - The admin replied to the user qwe@qwe with the message: Привет44
 2024-03-30 23:05:20 - INFO - API started
 2024-03-30 23:06:00 - INFO - The admin admin/admin@mail.ru has logged in
+2024-03-30 23:22:47 - INFO - API started
+2024-03-30 23:22:50 - INFO - The administrator has made a request to receive the latest messages. offset=0
+2024-03-30 23:22:51 - INFO - User qwe@qwe has joined the chat
+2024-03-30 23:22:52 - INFO - The user qwe@qwe wrote the message: 123
+2024-03-30 23:22:53 - INFO - The user qwe@qwe wrote the message: 123
+2024-03-30 23:22:54 - INFO - User qwe@qwe has left the chat
+2024-03-30 23:22:54 - INFO - The administrator has made a request to receive the latest messages. offset=0
+2024-03-30 23:22:55 - INFO - User qwe@qwe has joined the chat
+2024-03-30 23:24:11 - INFO - User qwe@qwe has left the chat
+2024-03-30 23:24:12 - INFO - API started
+2024-03-30 23:24:19 - INFO - User qwe@qwe has joined the chat
+2024-03-30 23:24:21 - INFO - The user qwe@qwe wrote the message: qwe
+2024-03-30 23:24:21 - INFO - User qwe@qwe has left the chat
+2024-03-30 23:24:22 - INFO - User qwe@qwe has joined the chat
+2024-03-30 23:24:26 - INFO - User qwe@qwe has left the chat
+2024-03-30 23:28:04 - INFO - API started
+2024-03-30 23:28:09 - INFO - User qwe@qwe has joined the chat
+2024-03-30 23:28:16 - INFO - User qwe@qwe has left the chat
+2024-03-30 23:28:17 - INFO - User qwe@qwe has joined the chat
+2024-03-30 23:29:18 - INFO - User qwe@qwe has left the chat
+2024-03-30 23:29:18 - INFO - User qwe@qwe has joined the chat
+2024-03-30 23:29:36 - INFO - User qwe@qwe has left the chat
+2024-03-30 23:29:36 - INFO - User qwe@qwe has joined the chat
