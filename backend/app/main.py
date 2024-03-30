@@ -3,6 +3,15 @@
 происходит запуск backend части
 """
 
+# import sys
+# from pathlib import Path
+#
+# BASE_DIR = Path(__file__).parent.parent
+# sys.path.append(str(BASE_DIR) + '/chat')
+# sys.path.append(str(BASE_DIR) + '/db')
+# sys.path.append(str(BASE_DIR) + '/auth')
+# sys.path.append(str(BASE_DIR) + '/admin')
+
 import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware

@@ -10,10 +10,17 @@ from backend.app.logger_file import logger
 sync_orm = SyncOrm()
 
 
-class ConnectionManager:
+class ConnectionManager(object):
     """
     Класс хранит активные websocket соединения
     """
+    # Реализация паттерна Singleton
+    _instance = None
+
+    def __new__(cls, *args, **kwargs):
+        if not isinstance(cls._instance, cls):
+            cls._instance = object.__new__(cls, *args, **kwargs)
+        return cls._instance
 
     def __init__(self):
         self.active_connections: dict[str, WebSocket] = {}
@@ -68,7 +75,6 @@ async def websocket_endpoint(user_email: str, websocket: WebSocket) -> None:
         logger.info(f'User {user_email} has left the chat')
         manager.disconnect(websocket, user_email)
 
-
 # @chat_router.post('/test')
 # async def test_func(user_email: str, message: str):
 #     if manager.active_connections.get(user_email):
@@ -77,4 +83,3 @@ async def websocket_endpoint(user_email: str, websocket: WebSocket) -> None:
 #         'data': None,
 #         'status': 'ok'
 #     }
-
