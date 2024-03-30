@@ -26,14 +26,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-BASE_DIR = Path(__file__).parent.parent
-logger = logging.getLogger('system')
-
 
 @app.on_event('startup')
 async def server_start():
-    logging.basicConfig(filename=BASE_DIR / 'logs.log', level=logging.INFO)
-    logger.info('starter')
     sync_orm = SyncOrm()
     # sync_orm.drop_tables()
     sync_orm.create_tables()

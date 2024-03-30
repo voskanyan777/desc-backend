@@ -5,6 +5,7 @@
 from fastapi import WebSocket, WebSocketDisconnect
 from backend.db.orm import SyncOrm
 from backend.chat.router import chat_router
+from backend.app.logger_file import logger
 
 sync_orm = SyncOrm()
 
@@ -61,6 +62,7 @@ async def websocket_endpoint(user_email: str, websocket: WebSocket) -> None:
             # Ожидание ввода (сообщения)
             data = await websocket.receive_json()
             message = parse_data(data)
+            logger.info(f'The user {user_email} wrote the message: {message}')
             await manager.send_personal_message(message, websocket)
     except WebSocketDisconnect:
         manager.disconnect(websocket, user_email)
