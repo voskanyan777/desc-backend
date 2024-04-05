@@ -1,3 +1,4 @@
 backend/db/.env
 .idea
 /backend/auth/certs/jwt-private.pem
+/backend/logs.log
