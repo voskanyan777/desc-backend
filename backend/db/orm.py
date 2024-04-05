@@ -40,6 +40,7 @@ class SyncOrm(object):
         Метод добавляет сообщение пользоваеля из тех.поддержки
         в таблицу базы данных
         :param user_name: имя пользователя
+        :param role: Роль пользователя. Админ или пользователь
         :param user_email: электронная почта пользователя
         :param message: введенное сообщение
         :return: None
@@ -60,10 +61,12 @@ class SyncOrm(object):
         Метод делает выборку последних сообщении пользоваеля по его почте
         """
         with session_factory() as session:
-            query = select(ChatOrm.message).limit(5).offset(offset)
+            query = select(ChatOrm.user_email, ChatOrm.message, ChatOrm.role).limit(45).offset(offset)
             result = session.execute(query)
             result = result.all()
-            messages = [row[0] for row in result]
+            messages: list = []
+            for user_email, user_message, role in result:
+                messages.append([user_email, user_message, role])
             return messages
     @staticmethod
     def select_user_last_messages(user_email: str) -> list:
