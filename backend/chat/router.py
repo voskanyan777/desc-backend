@@ -11,7 +11,7 @@ sync_orm = SyncOrm()
 # Индивидуальный роутер для чата
 chat_router = APIRouter(
     prefix='/chat',
-    tags=['Chat']
+    tags=['chat']
 )
 
 
