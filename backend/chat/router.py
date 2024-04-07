@@ -30,8 +30,8 @@ async def add_review(review: ReviewModel) -> dict:
 
 
 @chat_router.get('/user_last_messages')
-async def get_user_last_messages(user_email: str) -> dict:
-    messages = sync_orm.select_user_last_messages(user_email)
+async def get_user_last_messages(user_email: str, offset: int) -> dict:
+    messages = sync_orm.select_user_last_messages(user_email, offset)
     return {
         'data': messages,
         'status': 'ok'
