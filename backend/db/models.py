@@ -29,7 +29,7 @@ class ReviewsOrm(Base):
     id: Mapped[intpk]
     user_name: Mapped[user_name]
     user_email: Mapped[user_email]
-    user_reviews: Mapped[str]
+    user_reviews: Mapped[str] = mapped_column(nullable=True)
     user_star_rating: Mapped[int]
     written_at: Mapped[written_at]
 

@@ -69,9 +69,9 @@ class SyncOrm(object):
                 messages.append([user_email, user_message, role])
             return messages
     @staticmethod
-    def select_user_last_messages(user_email: str) -> list:
+    def select_user_last_messages(user_email: str, offset: int) -> list:
         with session_factory() as session:
-            query = select(ChatOrm.message).where(ChatOrm.user_email == user_email)
+            query = select(ChatOrm.message).where(ChatOrm.user_email == user_email).limit(50).offset(offset)
             result = session.execute(query)
             result = result.all()
             messages = [row[0] for row in result]
