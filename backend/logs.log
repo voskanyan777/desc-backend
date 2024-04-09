@@ -1,0 +1,66 @@
+2024-04-05 23:06:42 - INFO - API started
+2024-04-05 23:07:43 - INFO - User Voskanyan@mail.ru has joined the chat
+2024-04-05 23:07:56 - INFO - The user Voskanyan@mail.ru wrote the message: hello world
+2024-04-05 23:08:05 - INFO - User Voskanyan@mail.ru has left the chat
+2024-04-05 23:08:05 - INFO - User Voskanyan@mail.ru has joined the chat
+2024-04-05 23:08:12 - INFO - The user Voskanyan@mail.ru wrote the message: hell 
+2024-04-05 23:08:17 - INFO - User Voskanyan@mail.ru has left the chat
+2024-04-05 23:08:17 - INFO - User Voskanyan@mail.ru has joined the chat
+2024-04-05 23:08:22 - INFO - The user Voskanyan@mail.ru wrote the message: asdasdasd
+2024-04-05 23:09:14 - INFO - User Voskanyan@mail.ru has left the chat
+2024-04-05 23:09:15 - INFO - User Voskanyan@mail.ru has joined the chat
+2024-04-05 23:09:25 - INFO - User Voskanyan@mail.ru has left the chat
+2024-04-05 23:09:25 - INFO - User Voskanyan@mail.ru has joined the chat
+2024-04-05 23:09:34 - INFO - User Voskanyan@mail.ru has left the chat
+2024-04-05 23:09:34 - INFO - User Voskanyan@mail.ru has joined the chat
+2024-04-05 23:09:42 - INFO - The user Voskanyan@mail.ru wrote the message: for i in range(len(arr))
+2024-04-05 23:09:47 - INFO - The user Voskanyan@mail.ru wrote the message: asdasdasdasdasdasd
+2024-04-05 23:10:50 - INFO - The admin admin/admin@mail.ru has logged in
+2024-04-05 23:11:36 - INFO - The admin replied to the user Voskanyan@mail.ru with the message: qweqweqwe
+2024-04-05 23:11:42 - INFO - The admin replied to the user Voskanyan@mail.ru with the message: qweqweqwe
+2024-04-05 23:11:42 - INFO - The admin replied to the user Voskanyan@mail.ru with the message: qweqweqwe
+2024-04-05 23:11:43 - INFO - The admin replied to the user Voskanyan@mail.ru with the message: qweqweqwe
+2024-04-05 23:11:43 - INFO - The admin replied to the user Voskanyan@mail.ru with the message: qweqweqwe
+2024-04-05 23:11:43 - INFO - The admin replied to the user Voskanyan@mail.ru with the message: qweqweqwe
+2024-04-05 23:11:43 - INFO - The admin replied to the user Voskanyan@mail.ru with the message: qweqweqwe
+2024-04-05 23:11:43 - INFO - The admin replied to the user Voskanyan@mail.ru with the message: qweqweqwe
+2024-04-05 23:11:46 - INFO - User Voskanyan@mail.ru has left the chat
+2024-04-05 23:11:47 - INFO - User Voskanyan@mail.ru has joined the chat
+2024-04-05 23:13:16 - INFO - User email@email.ru has joined the chat
+2024-04-05 23:13:31 - INFO - The user email@email.ru wrote the message: Здравствуйте
+2024-04-05 23:13:49 - INFO - The user email@email.ru wrote the message: хочу получить консультацию по разработке индивидуального сайта
+2024-04-05 23:13:55 - INFO - User email@email.ru has left the chat
+2024-04-05 23:13:56 - INFO - User email@email.ru has joined the chat
+2024-04-05 23:14:39 - INFO - The admin replied to the user email@mail.ru with the message: Здравствуйте. Хорошо. Вам удобно будет личная встреча или в онлайн формате?
+2024-04-05 23:14:47 - INFO - User email@email.ru has left the chat
+2024-04-05 23:14:47 - INFO - User email@email.ru has joined the chat
+2024-04-05 23:15:07 - INFO - The admin replied to the user email@email.ru with the message: Здравствуйте. Хорошо. Вам удобно будет личная встреча или в онлайн формате?
+2024-04-05 23:15:18 - INFO - User email@email.ru has left the chat
+2024-04-05 23:15:40 - INFO - The admin replied to the user email@email.ru with the message: если в личном формате, то мы готовы встретиться с вами в течение следующей недели
+2024-04-05 23:15:42 - INFO - User email@email.ru has joined the chat
+2024-04-05 23:16:15 - INFO - User Voskanyan@mail.ru has left the chat
+2024-04-05 23:16:15 - INFO - User email@email.ru has left the chat
+2024-04-05 23:16:44 - INFO - API started
+2024-04-05 23:16:53 - INFO - The administrator has made a request to receive the latest messages. offset=0
+2024-04-05 23:19:20 - INFO - API started
+2024-04-05 23:19:21 - INFO - The administrator has made a request to receive the latest messages. offset=0
+2024-04-05 23:20:25 - INFO - API started
+2024-04-05 23:20:25 - INFO - The administrator has made a request to receive the latest messages. offset=0
+2024-04-05 23:22:52 - INFO - API started
+2024-04-05 23:23:16 - INFO - API started
+2024-04-05 23:23:16 - INFO - The administrator has made a request to receive the latest messages. offset=0
+2024-04-05 23:25:00 - INFO - API started
+2024-04-05 23:25:00 - INFO - The administrator has made a request to receive the latest messages. offset=0
+2024-04-05 23:26:07 - INFO - API started
+2024-04-05 23:26:07 - INFO - The administrator has made a request to receive the latest messages. offset=0
+2024-04-05 23:26:45 - INFO - API started
+2024-04-05 23:26:48 - INFO - The administrator has made a request to receive the latest messages. offset=0
+2024-04-08 21:57:26 - INFO - API started
+2024-04-08 21:57:38 - INFO - API started
+2024-04-09 16:56:01 - INFO - API started
+2024-04-09 17:01:37 - INFO - API started
+2024-04-09 17:05:06 - INFO - API started
+2024-04-09 17:07:04 - INFO - API started
+2024-04-09 17:07:43 - INFO - API started
+2024-04-09 17:09:26 - INFO - API started
+2024-04-09 17:11:44 - INFO - API started
