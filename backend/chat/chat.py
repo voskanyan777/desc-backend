@@ -1,7 +1,8 @@
 from fastapi import WebSocket, WebSocketDisconnect
-from backend.db.orm import SyncOrm
-from backend.chat.router import chat_router
+
 from backend.app.logger_file import logger
+from backend.chat.router import chat_router
+from backend.db.orm import SyncOrm
 
 sync_orm = SyncOrm()
 
@@ -30,6 +31,9 @@ class ConnectionManager(object):
 
     async def send_personal_message(self, message: str, websocket: WebSocket):
         await websocket.send_text(message)
+
+    async def send_admin_message(self, message: str, user_email: str):
+        self.active_connections['admin'].send_text(message)
 
 
 manager = ConnectionManager()
@@ -67,8 +71,25 @@ async def websocket_endpoint(user_email: str, websocket: WebSocket) -> None:
             message = parse_data(data)
             logger.info(f'The user {user_email} wrote the message: {message}')
             await manager.send_personal_message(message, websocket)
+            await manager.send_admin_message(message, user_email)
 
     except WebSocketDisconnect:
         logger.info(f'User {user_email} has left the chat')
         manager.disconnect(websocket, user_email)
 
+
+@chat_router.websocket('/ws/admin/{user_email}')
+async def admin_websocket(user_email: str, websocket: WebSocket):
+    await manager.connect(websocket, 'admin')
+    logger.info(f'User {user_email} has joined the chat')
+    try:
+        while True:
+            # Ожидание ввода (сообщения)
+            message = await websocket.receive_text()
+            await manager.send_personal_message(message, websocket)
+
+    except WebSocketDisconnect:
+        logger.info(f'User {user_email} has left the chat')
+        manager.disconnect(websocket, user_email)
+    except Exception as e:
+        logger.exception(f'Error: {e}')

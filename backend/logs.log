@@ -107,3 +107,36 @@
 2024-04-09 18:05:31 - INFO - User test@mail.ru has joined the chat
 2024-04-09 18:05:33 - INFO - The user test@mail.ru wrote the message: HELLO WORLD!
 2024-04-09 18:06:32 - INFO - API started
+2024-04-10 16:29:36 - INFO - API started
+2024-04-10 16:30:36 - INFO - User qwe@mail.ru has joined the chat
+2024-04-10 16:30:36 - INFO - User qwe@mail.ru has left the chat
+2024-04-10 16:30:52 - INFO - User test@mail.ru has joined the chat
+2024-04-10 16:31:47 - INFO - The user test@mail.ru wrote the message: message
+2024-04-10 16:31:49 - INFO - The user test@mail.ru wrote the message: message
+2024-04-10 16:31:50 - INFO - The user test@mail.ru wrote the message: message
+2024-04-10 16:31:53 - INFO - The user test@mail.ru wrote the message: message
+2024-04-10 16:32:10 - INFO - User test@mail.ru has left the chat
+2024-04-10 16:35:50 - INFO - User qwe@mail.ru has joined the chat
+2024-04-10 16:35:57 - INFO - The user qwe@mail.ru wrote the message: hello world
+2024-04-10 16:35:59 - INFO - User qwe@mail.ru has left the chat
+2024-04-10 16:35:59 - INFO - User qwe@mail.ru has joined the chat
+2024-04-10 16:36:06 - INFO - The user qwe@mail.ru wrote the message: FOR I IN RANGE(LEN(ARR))
+2024-04-10 16:36:07 - INFO - User qwe@mail.ru has left the chat
+2024-04-10 16:36:08 - INFO - User qwe@mail.ru has joined the chat
+2024-04-10 16:38:41 - INFO - The admin admin/admin@mail.ru has logged in
+2024-04-10 16:39:05 - INFO - The administrator has made a request for user reviews. offset=0
+2024-04-10 16:40:50 - INFO - User qwe@mail.ru has left the chat
+2024-04-10 16:41:22 - INFO - API started
+2024-04-10 16:44:13 - INFO - API started
+2024-04-10 16:47:10 - INFO - API started
+2024-04-10 16:57:26 - INFO - API started
+2024-04-10 16:57:47 - INFO - User test@mail.ru has joined the chat
+2024-04-10 16:57:55 - INFO - User test@mail.ru has left the chat
+2024-04-10 17:05:17 - INFO - API started
+2024-04-10 17:05:33 - INFO - User qwe@mail.ru has joined the chat
+2024-04-10 17:05:41 - INFO - The user qwe@mail.ru wrote the message: hello world
+2024-04-10 17:05:43 - INFO - User qwe@mail.ru has joined the chat
+2024-04-10 17:05:47 - INFO - User test@mail.ru has joined the chat
+2024-04-10 17:06:00 - INFO - The user qwe@mail.ru wrote the message: hello, admin
+2024-04-10 17:06:24 - INFO - User qwe@mail.ru has left the chat
+2024-04-10 17:06:25 - INFO - User qwe@mail.ru has joined the chat
