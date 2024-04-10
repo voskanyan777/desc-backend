@@ -1,6 +1,3 @@
-"""
-Модуль содержит реализацию моделей таблиц в базе данных
-"""
 from datetime import datetime
 from typing import Annotated
 

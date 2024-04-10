@@ -64,3 +64,46 @@
 2024-04-09 17:07:43 - INFO - API started
 2024-04-09 17:09:26 - INFO - API started
 2024-04-09 17:11:44 - INFO - API started
+2024-04-09 17:35:44 - INFO - API started
+2024-04-09 17:37:06 - INFO - User qwe@mail.ru has joined the chat
+2024-04-09 17:37:31 - INFO - User qwe@mail.ru has left the chat
+2024-04-09 17:37:32 - INFO - User qwe@mail.ru has joined the chat
+2024-04-09 17:37:46 - INFO - The user qwe@mail.ru wrote the message: hello world
+2024-04-09 17:37:53 - INFO - User qwe@mail.ru has left the chat
+2024-04-09 17:37:54 - INFO - User qwe@mail.ru has joined the chat
+2024-04-09 17:38:02 - INFO - The user qwe@mail.ru wrote the message: janji mis
+2024-04-09 17:38:04 - INFO - User qwe@mail.ru has left the chat
+2024-04-09 17:38:05 - INFO - User qwe@mail.ru has joined the chat
+2024-04-09 17:39:36 - INFO - The admin admin/admin@mail.ru has logged in
+2024-04-09 17:39:53 - INFO - The admin replied to the user qwe@mail.ru with the message: Здравствуйте!!!!
+2024-04-09 17:40:22 - INFO - User qwe@mail.ru has left the chat
+2024-04-09 17:40:47 - INFO - The admin replied to the user qwe@mail.ru with the message: Напишите пожалуйста нам в телеграм: @desc_studio
+2024-04-09 17:40:53 - INFO - User qwe@mail.ru has joined the chat
+2024-04-09 17:42:09 - INFO - User qwe@mail.ru has left the chat
+2024-04-09 17:42:12 - INFO - API started
+2024-04-09 17:43:19 - INFO - Added user review. User: email
+2024-04-09 17:45:10 - INFO - The admin admin/admin@mail.ru has logged in
+2024-04-09 17:45:35 - INFO - The admin admin/admin@mail.ru has logged in
+2024-04-09 17:46:08 - INFO - The administrator has made a request for user reviews. offset=0
+2024-04-09 17:47:04 - INFO - The administrator has made a request for user reviews. offset=0
+2024-04-09 17:47:29 - INFO - The administrator has made a request to receive the latest messages. offset=0
+2024-04-09 17:49:27 - INFO - The admin replied to the user qwe@mail.ru with the message: Напишите пожалуйста нам в телеграм: @desc_studio
+2024-04-09 17:50:26 - INFO - User qwe@mail.ru has joined the chat
+2024-04-09 17:50:28 - INFO - User qwe@mail.ru has left the chat
+2024-04-09 17:50:28 - INFO - User qwe@mail.ru has joined the chat
+2024-04-09 17:51:32 - INFO - The admin replied to the user qwe@mail.ru with the message: Напишите пожалуйста нам в телеграм: @desc_studio
+2024-04-09 17:52:29 - INFO - The administrator has made a request to receive the latest messages. offset=0
+2024-04-09 17:57:39 - INFO - User test@mail.ru has joined the chat
+2024-04-09 17:57:41 - INFO - The user test@mail.ru wrote the message: messageInput
+2024-04-09 17:57:43 - INFO - The user test@mail.ru wrote the message: messageInput
+2024-04-09 17:57:52 - INFO - The user test@mail.ru wrote the message: HELLO WORLD!
+2024-04-09 18:00:22 - INFO - User qwe@mail.ru has left the chat
+2024-04-09 18:04:32 - INFO - API started
+2024-04-09 18:04:47 - INFO - User test@mail.ru has joined the chat
+2024-04-09 18:04:49 - INFO - The user test@mail.ru wrote the message: HELLO WORLD!
+2024-04-09 18:04:51 - INFO - The user test@mail.ru wrote the message: HELLO WORLD!
+2024-04-09 18:04:57 - INFO - User test@mail.ru has left the chat
+2024-04-09 18:04:58 - INFO - User test@mail.ru has joined the chat
+2024-04-09 18:05:31 - INFO - User test@mail.ru has joined the chat
+2024-04-09 18:05:33 - INFO - The user test@mail.ru wrote the message: HELLO WORLD!
+2024-04-09 18:06:32 - INFO - API started

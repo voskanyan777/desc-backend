@@ -1,8 +1,3 @@
-"""
-Главный файл всей системы, именно здесь
-происходит запуск backend части
-"""
-
 # import sys
 # from pathlib import Path
 #
@@ -44,4 +39,4 @@ async def server_start():
 
 
 if __name__ == '__main__':
-    uvicorn.run(app, port=8005)
+    uvicorn.run(app, port=8000)

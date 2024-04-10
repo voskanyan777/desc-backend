@@ -1,11 +1,13 @@
-from fastapi import APIRouter, Depends, HTTPException, status
-from backend.db.orm import SyncOrm
-from backend.auth.schemas import UserSchema
-from backend.auth.auth_jwt import get_current_active_auth_user
-from backend.chat.chat import manager
-from bs4 import BeautifulSoup
 from pathlib import Path
+
+from bs4 import BeautifulSoup
+from fastapi import APIRouter, Depends
+
 from backend.app.logger_file import logger
+from backend.auth.auth_jwt import get_current_active_auth_user
+from backend.auth.schemas import UserSchema
+from backend.chat.chat import manager
+from backend.db.orm import SyncOrm
 
 admin_router = APIRouter(
     prefix='/admin',
@@ -27,7 +29,8 @@ async def get_user_reviews(offset: int = 0,
 
 
 @admin_router.get('/last_message/')
-async def get_last_messages(offset: int = 0, user: UserSchema = Depends(get_current_active_auth_user)) -> dict:
+async def get_last_messages(offset: int = 0,
+                            user: UserSchema = Depends(get_current_active_auth_user)) -> dict:
     """
     Функция возвращает последние сообщение клинета
     :return: JSON объект. 'data' - Список со всеми сообщениями
@@ -61,23 +64,19 @@ async def admin_message(user_email: str, message: str,
 @admin_router.get('/change_information')
 async def change_html_information(tag: str, class_: str, new_value: str,
                                   user: UserSchema = Depends(get_current_active_auth_user)):
-    # Открываем файл index.html
     with open(BASE_DIR / "index.html", "r") as file:
         html_content = file.read()
 
-    # Создаем объект BeautifulSoup для работы с HTML
     soup = BeautifulSoup(html_content, "html.parser")
 
-    # Находим тег с классом
     main_paragraph = soup.find(tag, class_=class_)
 
-    # Изменяем содержимое тега на новое значение
     main_paragraph.string = new_value
 
-    # Сохраняем изменения обратно в файл
     with open(BASE_DIR / "index.html", "w") as file:
         file.write(str(soup))
-    logger.info(f'The admin changed the information on the html page. {tag=}, {class_=}, {new_value=}')
+    logger.info(
+        f'The admin changed the information on the html page. {tag=}, {class_=}, {new_value=}')
     return {
         'data': None,
         'status': 'ok'

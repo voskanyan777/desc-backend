@@ -1,6 +1,3 @@
-"""
-Модуль содержит функционал роутера для чата
-"""
 from fastapi import APIRouter
 from backend.db.orm import SyncOrm
 from backend.chat.models import ReviewModel

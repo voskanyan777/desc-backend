@@ -1,7 +1,3 @@
-"""
-Модуль с реализацией чата техподдержки
-"""
-
 from fastapi import WebSocket, WebSocketDisconnect
 from backend.db.orm import SyncOrm
 from backend.chat.router import chat_router
@@ -71,15 +67,8 @@ async def websocket_endpoint(user_email: str, websocket: WebSocket) -> None:
             message = parse_data(data)
             logger.info(f'The user {user_email} wrote the message: {message}')
             await manager.send_personal_message(message, websocket)
+
     except WebSocketDisconnect:
         logger.info(f'User {user_email} has left the chat')
         manager.disconnect(websocket, user_email)
 
-# @chat_router.post('/test')
-# async def test_func(user_email: str, message: str):
-#     if manager.active_connections.get(user_email):
-#         await manager.send_personal_message(message, manager.active_connections[user_email])
-#     return {
-#         'data': None,
-#         'status': 'ok'
-#     }
