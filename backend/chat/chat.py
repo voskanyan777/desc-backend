@@ -29,11 +29,19 @@ class ConnectionManager(object):
     def disconnect(self, websocket: WebSocket, user_email: str):
         del self.active_connections[user_email]
 
-    async def send_personal_message(self, message: str, websocket: WebSocket):
-        await websocket.send_text(message)
+    async def send_personal_message(self, message: str, websocket: WebSocket,
+                                    user_email: str = None):
+        if user_email is None:
+            await websocket.send_text(message)
+        else:
+            await self.active_connections[user_email].send_text(message)
 
     async def send_admin_message(self, message: str, user_email: str):
-        self.active_connections['admin'].send_text(message)
+        json = {
+            'message': message,
+            'user_email': user_email
+        }
+        await self.active_connections['admin'].send_json(json)
 
 
 manager = ConnectionManager()
@@ -84,9 +92,12 @@ async def admin_websocket(user_email: str, websocket: WebSocket):
     logger.info(f'User {user_email} has joined the chat')
     try:
         while True:
-            # Ожидание ввода (сообщения)
-            message = await websocket.receive_text()
-            await manager.send_personal_message(message, websocket)
+            # {
+            #    'message': 'message',
+            #    'user_email': 'aaa@mail.ru'
+            # }
+            data = await websocket.receive_json()
+            await manager.send_personal_message(data['message'], websocket, data['user_email'])
 
     except WebSocketDisconnect:
         logger.info(f'User {user_email} has left the chat')
