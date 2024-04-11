@@ -1,8 +1,9 @@
-from fastapi import WebSocket, WebSocketDisconnect
+from fastapi import WebSocket, WebSocketDisconnect, Depends
 
 from backend.app.logger_file import logger
 from backend.chat.router import chat_router
 from backend.db.orm import SyncOrm
+from backend.auth.auth_jwt import get_current_active_auth_user
 
 sync_orm = SyncOrm()
 
@@ -37,6 +38,8 @@ class ConnectionManager(object):
             await self.active_connections[user_email].send_text(message)
 
     async def send_admin_message(self, message: str, user_email: str):
+        if 'admin' not in self.active_connections:
+            return
         json = {
             'message': message,
             'user_email': user_email
@@ -97,7 +100,8 @@ async def admin_websocket(user_email: str, websocket: WebSocket):
             #    'user_email': 'aaa@mail.ru'
             # }
             data = await websocket.receive_json()
-            await manager.send_personal_message(data['message'], websocket, data['user_email'])
+            await manager.send_personal_message(data['message'], websocket,
+                                                data['user_email'])
 
     except WebSocketDisconnect:
         logger.info(f'User {user_email} has left the chat')
