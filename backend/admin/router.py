@@ -6,7 +6,6 @@ from fastapi import APIRouter, Depends
 from backend.app.logger_file import logger
 from backend.auth.auth_jwt import get_current_active_auth_user
 from backend.auth.schemas import UserSchema
-from backend.chat.chat import manager
 from backend.db.orm import SyncOrm
 
 admin_router = APIRouter(
@@ -43,25 +42,3 @@ async def get_last_messages(offset: int = 0,
     }
 
 
-
-
-@admin_router.get('/change_information')
-async def change_html_information(tag: str, class_: str, new_value: str,
-                                  user: UserSchema = Depends(get_current_active_auth_user)):
-    with open(BASE_DIR / "index.html", "r") as file:
-        html_content = file.read()
-
-    soup = BeautifulSoup(html_content, "html.parser")
-
-    main_paragraph = soup.find(tag, class_=class_)
-
-    main_paragraph.string = new_value
-
-    with open(BASE_DIR / "index.html", "w") as file:
-        file.write(str(soup))
-    logger.info(
-        f'The admin changed the information on the html page. {tag=}, {class_=}, {new_value=}')
-    return {
-        'data': None,
-        'status': 'ok'
-    }
