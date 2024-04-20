@@ -1,6 +1,4 @@
 from pathlib import Path
-
-from bs4 import BeautifulSoup
 from fastapi import APIRouter, Depends
 
 from backend.app.logger_file import logger

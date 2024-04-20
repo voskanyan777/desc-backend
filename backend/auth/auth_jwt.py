@@ -34,6 +34,7 @@ def validate_auth_user(
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="invalid username or password",
     )
+
     user = sync_orm.get_user(email)
     if not user:
         raise unauthed_exc
