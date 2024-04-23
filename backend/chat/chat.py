@@ -38,13 +38,12 @@ class ConnectionManager(object):
             await self.active_connections[user_email].send_text(message)
 
     async def send_admin_message(self, message: str, user_email: str):
-        if 'admin' not in self.active_connections:
-            return
-        json = {
-            'message': message,
-            'user_email': user_email
-        }
-        await self.active_connections['admin'].send_json(json)
+        if 'admin' in self.active_connections:
+            json = {
+                'message': message,
+                'user_email': user_email
+            }
+            await self.active_connections['admin'].send_json(json)
 
 
 manager = ConnectionManager()
@@ -106,6 +105,6 @@ async def admin_websocket(user_email: str, websocket: WebSocket):
 
     except WebSocketDisconnect:
         logger.info(f'User {user_email} has left the chat')
-        manager.disconnect(websocket, user_email)
+        manager.disconnect(websocket, 'admin')
     except Exception as e:
         logger.exception(f'Error: {e}')
