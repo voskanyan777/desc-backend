@@ -100,6 +100,7 @@ async def admin_websocket(user_email: str, websocket: WebSocket):
             #    'user_email': 'aaa@mail.ru'
             # }
             data = await websocket.receive_json()
+            sync_orm.insert_message_to_db('admin', 'admin', data['user_email'], data['message'])
             await manager.send_personal_message(data['message'], websocket,
                                                 data['user_email'])
 

@@ -68,11 +68,12 @@ class SyncOrm(object):
     @staticmethod
     def select_user_last_messages(user_email: str, offset: int) -> list:
         with session_factory() as session:
-            query = select(ChatOrm.message).where(ChatOrm.user_email == user_email).limit(50).offset(offset)
+            query = select(ChatOrm.message, ChatOrm.role).where(ChatOrm.user_email == user_email).limit(50).offset(offset)
             result = session.execute(query)
             result = result.all()
-            messages = [row[0] for row in result]
+            messages = [[data[0], data[1]] for data in result]
             return messages
+
     @staticmethod
     def insert_user_review_to_db(user_name: str, user_email: str, user_reviews: str, user_star_rating: int) -> None:
         userReview = ReviewsOrm(
