@@ -110,9 +110,10 @@ class SyncOrm(object):
             query = select(ReviewsOrm).limit(50).offset(offset)
             result = session.execute(query).scalars().all()
             result_dict = dict()
-            for element in result:
-                result_dict[element.user_email] = {
+            for index, element in enumerate(result):
+                result_dict[index] = {
                     'user_name': element.user_name,
+                    'user_email': element.user_email,
                     'user_review': element.user_reviews,
                     'user_star_rating': element.user_star_rating,
                     'written_at': element.written_at
