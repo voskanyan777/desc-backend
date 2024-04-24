@@ -1,5 +1,5 @@
 from jwt.exceptions import InvalidTokenError
-from fastapi import APIRouter, Depends, Form, HTTPException, status, FastAPI
+from fastapi import APIRouter, Depends, Form, HTTPException, status
 from .schemas import UserSchema
 from .utils import *
 from pydantic import BaseModel

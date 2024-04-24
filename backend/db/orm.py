@@ -107,7 +107,7 @@ class SyncOrm(object):
     @staticmethod
     def get_user_reviews(offset: int) -> dict:
         with session_factory() as session:
-            query = select(ReviewsOrm).limit(5).offset(offset)
+            query = select(ReviewsOrm).limit(50).offset(offset)
             result = session.execute(query).scalars().all()
             result_dict = dict()
             for element in result:
