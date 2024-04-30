@@ -1,19 +1,16 @@
-# import sys
-# from pathlib import Path
-#
-# BASE_DIR = Path(__file__).parent.parent
-# sys.path.append(str(BASE_DIR) + '/chat')
-# sys.path.append(str(BASE_DIR) + '/db')
-# sys.path.append(str(BASE_DIR) + '/auth')
-# sys.path.append(str(BASE_DIR) + '/admin')
+import sys
+from pathlib import Path
+
+BASE_DIR = Path(__file__).parent.parent
+sys.path.append(str(BASE_DIR))
 
 import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from backend.chat.chat import chat_router
-from backend.db.orm import SyncOrm
-from backend.auth.auth_jwt import auth_router
-from backend.admin.router import admin_router
+from chat.chat import chat_router
+from db.orm import SyncOrm
+from auth.auth_jwt import auth_router
+from admin.router import admin_router
 from logger_file import logger
 
 app = FastAPI()
@@ -36,6 +33,7 @@ async def server_start():
     sync_orm = SyncOrm()
     sync_orm.drop_tables()
     sync_orm.create_tables()
+
 
 
 if __name__ == '__main__':

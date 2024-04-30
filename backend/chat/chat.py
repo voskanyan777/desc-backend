@@ -1,8 +1,14 @@
+import sys
+from pathlib import Path
+BASE_DIR = Path(__file__).parent.parent
+sys.path.append(str(BASE_DIR))
+
+
 from fastapi import WebSocket, WebSocketDisconnect, Depends
 
-from backend.app.logger_file import logger
-from backend.chat.router import chat_router
-from backend.db.orm import SyncOrm
+from app.logger_file import logger
+from chat.router import chat_router
+from db.orm import SyncOrm
 
 
 sync_orm = SyncOrm()

@@ -1,11 +1,18 @@
+import sys
+from pathlib import Path
+BASE_DIR = Path(__file__).parent.parent
+sys.path.append(str(BASE_DIR))
+
+
+
 from jwt.exceptions import InvalidTokenError
 from fastapi import APIRouter, Depends, Form, HTTPException, status
 from .schemas import UserSchema
 from .utils import *
 from pydantic import BaseModel
-from backend.db.orm import SyncOrm
+from db.orm import SyncOrm
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials, OAuth2PasswordBearer
-from backend.app.logger_file import logger
+from app.logger_file import logger
 
 
 http_bearer = HTTPBearer()

@@ -1,10 +1,13 @@
+import sys
 from pathlib import Path
+BASE_DIR = Path(__file__).parent.parent
+sys.path.append(str(BASE_DIR))
 from fastapi import APIRouter, Depends
 
-from backend.app.logger_file import logger
-from backend.auth.auth_jwt import get_current_active_auth_user
-from backend.auth.schemas import UserSchema
-from backend.db.orm import SyncOrm
+from app.logger_file import logger
+from auth.auth_jwt import get_current_active_auth_user
+from auth.schemas import UserSchema
+from db.orm import SyncOrm
 
 admin_router = APIRouter(
     prefix='/admin',

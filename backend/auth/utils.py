@@ -1,3 +1,4 @@
+from typing import Union
 from datetime import timedelta, datetime
 from .config import settings
 import jwt
@@ -8,7 +9,7 @@ def encode_jwt(
         payload: dict,
         private_key: str = settings.auth_jwt.private_key_path.read_text(),
         algorithm: str = settings.auth_jwt.algorithm,
-        expire_timedelta: timedelta | None = None,
+        expire_timedelta: Union[timedelta, None] = None,
         expire_minutes: int = settings.auth_jwt.access_token_expire_minutes):
     ''' Геренация токенов'''
     to_encode = payload.copy()
@@ -26,7 +27,8 @@ def encode_jwt(
     return encoded
 
 
-def decode_jwt(token: str | bytes, public_key: str = settings.auth_jwt.public_key_path.read_text(),
+def decode_jwt(token: Union[str, bytes],
+               public_key: str = settings.auth_jwt.public_key_path.read_text(),
                algorithm: str = settings.auth_jwt.algorithm):
     '''Чтение и валидация'''
     decoded = jwt.decode(token, public_key, algorithms=[algorithm])

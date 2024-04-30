@@ -1,7 +1,13 @@
+import sys
+from pathlib import Path
+BASE_DIR = Path(__file__).parent.parent
+sys.path.append(str(BASE_DIR))
+
+
 from fastapi import APIRouter
-from backend.db.orm import SyncOrm
-from backend.chat.models import ReviewModel
-from backend.app.logger_file import logger
+from db.orm import SyncOrm
+from chat.models import ReviewModel
+from app.logger_file import logger
 
 
 sync_orm = SyncOrm()
